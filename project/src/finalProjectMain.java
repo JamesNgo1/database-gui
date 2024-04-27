@@ -8,26 +8,29 @@ public class finalProjectMain {
 		//protocol , ip address ,and then the port 
 		String jdbcConn = "jdbc:mysql://localhost:3306/finalguiproject?";
 		String uname = "guest";
-		String password = "guestguest";
+		String password = "guest";
 
 		//connection obect
-		try {
-			Connection con = DriverManager.getConnection(jdbcConn, uname, password);
+		// try {
+        //     System.out.println("connected??");
+		// 	Connection con = DriverManager.getConnection(jdbcConn, uname, password);
 
-			System.out.println("connection worked");
+		// 	System.out.println("connection worked");
 
-			String query = "insert into product(prodName, price) values('rice', 1.99)";
+		// 	String query = "insert into product(prodName, price) values('rice', 1.99)";
 
-			java.sql.Statement st = con.createStatement();
-			st.execute(query);
+		// 	java.sql.Statement st = con.createStatement();
+		// 	st.execute(query);
+
+            
 			
 
 
 
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		// } catch (SQLException e) {
+		// 	// TODO Auto-generated catch block
+		// 	e.printStackTrace();
+		// }
 
         //open execute close . open execute close 
 

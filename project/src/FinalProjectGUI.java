@@ -11,8 +11,9 @@
     import java.awt.event.ActionListener;
     import java.sql.*;
     import java.util.ArrayList;
-    
-    import javax.swing.*;
+import java.util.concurrent.Callable;
+
+import javax.swing.*;
     
     @SuppressWarnings({ "rawtypes", "unchecked", "serial" })
     public class FinalProjectGUI extends JFrame {
@@ -523,8 +524,39 @@
             System.out.println("registering clicked");
             System.out.println(usernameField.getText());
             System.out.println(passwordField.getText());
+
+            //connec to the database 
+            String jdbcConn = "jdbc:mysql://localhost:3306/finalguiproject?";
+		    String uname = "guest";
+		    String password = "guest";
+
+            try {
+                Connection con = DriverManager.getConnection(jdbcConn, uname, password);
+               CallableStatement newUser = con.prepareCall("call RegisterNewUser(\"" + usernameField.getText() + "\" ,\"" + passwordField.getText()+ "\");");
+
+                //okay probably the issue 
+                //CallableStatement newUser = con.prepareCall("call RegisterNewUser('bitchass','bitchass')");
+                newUser.executeQuery();
+
+            } catch (SQLException e) {
+                // TODO Auto-generated catch block
+                System.out.println("error");
+                e.printStackTrace();
+            }
+
+
+
+            
+
+            //note that we cant have null for the username and password however wonder if ti takes an 
+            //empty string
+
+            //so it would take empty 
         }
         
+
+
+
         //this function calls a stored procedure to determine if there exists
         //a username / value pair in the database that matches the user's input.
         //If there is, the below variables should be populated, then call the DisplayFormSelectScreen() function.

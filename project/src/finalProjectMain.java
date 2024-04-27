@@ -1,3 +1,4 @@
+import java.beans.Statement;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -14,6 +15,15 @@ public class finalProjectMain {
 			Connection con = DriverManager.getConnection(jdbcConn, uname, password);
 
 			System.out.println("connection worked");
+
+			String query = "insert into product(prodName, price) values('cookies', 1.99)";
+
+			java.sql.Statement st = con.createStatement();
+			st.execute(query);
+			
+
+
+
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

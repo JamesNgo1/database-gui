@@ -520,6 +520,9 @@
         private void RegisterNewUser()
         {
             //TODO: complete this function, which should communicate with the database
+            System.out.println("registering clicked");
+            System.out.println(usernameField.getText());
+            System.out.println(passwordField.getText());
         }
         
         //this function calls a stored procedure to determine if there exists

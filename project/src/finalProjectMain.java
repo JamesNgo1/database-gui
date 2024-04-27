@@ -28,6 +28,13 @@ public class finalProjectMain {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+
+        //open execute close . open execute close 
+
+        //open 
+
+
+        //close after done 
 		
 		FinalProjectGUI frame = new FinalProjectGUI();
 		frame.setVisible(true);

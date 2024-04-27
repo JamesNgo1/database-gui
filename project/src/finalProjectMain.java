@@ -16,7 +16,7 @@ public class finalProjectMain {
 
 			System.out.println("connection worked");
 
-			String query = "insert into product(prodName, price) values('cookies', 1.99)";
+			String query = "insert into product(prodName, price) values('rice', 1.99)";
 
 			java.sql.Statement st = con.createStatement();
 			st.execute(query);

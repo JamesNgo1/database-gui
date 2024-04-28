@@ -532,12 +532,13 @@ import javax.swing.*;
 
             try {
                 Connection con = DriverManager.getConnection(jdbcConn, uname, password);
-               CallableStatement newUser = con.prepareCall("call RegisterNewUser(\"" + usernameField.getText() + "\" ,\"" + passwordField.getText()+ "\");");
+                CallableStatement newUser = con.prepareCall("call RegisterNewUser(\"" + usernameField.getText() + "\" ,\"" + passwordField.getText()+ "\");");
 
                 //okay probably the issue 
                 //CallableStatement newUser = con.prepareCall("call RegisterNewUser('bitchass','bitchass')");
                 newUser.executeQuery();
                 DisplaySplashScreen();
+                con.close();
 
             } catch (SQLException e) {
                 // TODO Auto-generated catch block
@@ -569,6 +570,79 @@ import javax.swing.*;
         private void LoginWithCreds()
         {
             //TODO: complete this function, which should communicate with the database
+            //reopen the connection
+
+            //I want to capture ther result to text it out
+            
+
+            String jdbcConn = "jdbc:mysql://localhost:3306/finalguiproject?";
+		    String uname = "guest";
+		    String password = "guest";
+            System.out.println("login creds");
+
+            //so we are reusing the username and password field
+            // System.out.println(usernameField.getText());
+            // System.out.println(passwordField.getText());
+
+            try {
+                Connection con = DriverManager.getConnection(jdbcConn, uname, password);
+                CallableStatement loginUser = con.prepareCall("call LoginWithCreds(\"" + usernameField.getText() + "\" ,\"" + passwordField.getText()+ "\");");
+
+                //okay probably the issue 
+                //CallableStatement newUser = con.prepareCall("call RegisterNewUser('bitchass','bitchass')");
+                // newUser.executeQuery();
+                // DisplaySplashScreen();
+                ResultSet rs = loginUser.executeQuery();
+
+                int id = -1;
+                String username = "";
+                String password1 = "";
+                int userRole = -1;
+
+                //should just return one element or none
+                while(rs.next()){
+                    System.out.println("printin credentials");
+                    id = rs.getInt(1);
+                    username = rs.getString(2);
+                    password1 = rs.getString(3);
+                    userRole = rs.getInt(4);
+                    // System.out.println("valid login");
+                    //     System.out.println(id);
+                    //     System.out.println(username);
+                    //     System.out.println(password1);
+                    //     System.out.println(userRole);
+
+                    
+                    // System.out.println("hello world");
+
+                    
+                }//while loop
+                if(id != -1){
+                    System.out.println("valid login");
+                    System.out.println(id);
+                    System.out.println(username);
+                    System.out.println(password1);
+                    System.out.println(userRole);
+                    loggedInUserID = id;	
+                    loggedInUserRole = userRole;
+                    loggedInUserName = username;
+                    DisplayFormSelectScreen();
+
+
+
+                }
+                else{
+                    System.out.print("hit the error");
+                    errorMessageArea.append("login credentials are incorrect\n");
+                }
+                con.close();
+                //end of try catch
+            } catch (SQLException e) {
+                // TODO Auto-generated catch block
+                System.out.println("error");
+                errorMessageArea.append("Account already existed\n");
+                //e.printStackTrace();
+            }
 
         }
         

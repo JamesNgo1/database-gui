@@ -13,6 +13,7 @@
     import java.util.ArrayList;
 import java.util.concurrent.Callable;
 
+import javax.naming.spi.DirStateFactory.Result;
 import javax.swing.*;
     
     @SuppressWarnings({ "rawtypes", "unchecked", "serial" })
@@ -692,6 +693,44 @@ import javax.swing.*;
         {
             salesTotal = -1;
             //TODO: complete this function, which should communicate with the database
+            String jdbcConn = "jdbc:mysql://localhost:3306/finalguiproject?";
+             String uname = "guest";
+             String password = "guest";
+             double total;
+           
+             try {
+                //pord id , user id , qty , total
+                System.out.println("yoyo");
+                 Connection con = DriverManager.getConnection(jdbcConn, uname, password);
+                 //CallableStatement sumbitOrder = con.prepareCall("call SumbitOrder("+productIDString + ", " + userID + ", " + qty + "," + totalPriceString);
+                 CallableStatement totalSales = con.prepareCall("call GetSalesTotal();");
+
+                 
+                 ResultSet rs = totalSales.executeQuery();
+                 while(rs.next()){
+                    total = rs.getDouble((1));
+                    System.out.println(total);
+                    salesTotal = total;
+                
+                 }
+
+                 
+                 
+ 
+                 //okay probably the issue 
+                 //CallableStatement newUser = con.prepareCall("call RegisterNewUser('bitchass','bitchass')");
+                 //ResultSet rs = getAllProducts.executeQuery();
+                
+                 con.close();
+ 
+             } catch (SQLException e) {
+                 // TODO Auto-generated catch block
+                 
+                 e.printStackTrace();
+             }
+
+
+
         }
         
         //this function calls a stored procedure to add a new Sale to the database

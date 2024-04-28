@@ -537,6 +537,7 @@ import javax.swing.*;
                 //okay probably the issue 
                 //CallableStatement newUser = con.prepareCall("call RegisterNewUser('bitchass','bitchass')");
                 newUser.executeQuery();
+                DisplaySplashScreen();
 
             } catch (SQLException e) {
                 // TODO Auto-generated catch block

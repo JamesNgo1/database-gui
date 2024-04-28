@@ -753,5 +753,37 @@ import javax.swing.*;
         private void SubmitNewProduct()
         {
             //TODO: complete this function, which should communicate with the database
+
+            String jdbcConn = "jdbc:mysql://localhost:3306/finalguiproject?";
+             String uname = "guest";
+             String password = "guest";
+
+ 
+             try {
+                //pord id , user id , qty , total
+                System.out.println(productNameField.getText());
+                System.out.println(productPriceField.getText());
+
+                String name = productNameField.getText();
+                String price = productPriceField.getText();
+               
+                 Connection con = DriverManager.getConnection(jdbcConn, uname, password);
+                 CallableStatement submitProduct = con.prepareCall("call SubmitNewProduct(\""+ name + "\"," + price + ");");
+                 //CallableStatement sumbitOrder = con.prepareCall("call SubmitOrder("+productIDString + "," + userID + "," + qty + "," + totalPriceString + ");");
+
+                 submitProduct.executeQuery();
+                 //sumbitOrder.executeQuery();
+ 
+                 //okay probably the issue 
+                 //CallableStatement newUser = con.prepareCall("call RegisterNewUser('bitchass','bitchass')");
+                 //ResultSet rs = getAllProducts.executeQuery();
+                
+                 con.close();
+ 
+             } catch (SQLException e) {
+                 // TODO Auto-generated catch block
+                 
+                 e.printStackTrace();
+             }
         }
     }

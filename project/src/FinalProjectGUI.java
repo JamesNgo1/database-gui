@@ -572,8 +572,6 @@ import javax.swing.*;
             //TODO: complete this function, which should communicate with the database
             //reopen the connection
 
-            //I want to capture ther result to text it out
-            
 
             String jdbcConn = "jdbc:mysql://localhost:3306/finalguiproject?";
 		    String uname = "guest";
@@ -653,6 +651,39 @@ import javax.swing.*;
         private void GetAllProducts()
         {
             //TODO: complete this function, which should communicate with the database
+             //connec to the database 
+             String jdbcConn = "jdbc:mysql://localhost:3306/finalguiproject?";
+             String uname = "guest";
+             String password = "guest";
+ 
+             try {
+                 Connection con = DriverManager.getConnection(jdbcConn, uname, password);
+                 CallableStatement getAllProducts = con.prepareCall("call GetAllProducts();");
+ 
+                 //okay probably the issue 
+                 //CallableStatement newUser = con.prepareCall("call RegisterNewUser('bitchass','bitchass')");
+                 ResultSet rs = getAllProducts.executeQuery();
+                 while(rs.next()){
+                    int id = rs.getInt(1);
+                    String prodName = rs.getString(2);
+                    double price = rs.getDouble(3);
+                    System.out.println(id);
+                    System.out.println(prodName);
+                    System.out.println(price);
+                    productIDs.add(id);
+                    productPrices.add(price);
+                    productNames.add(prodName);
+                 }
+                
+                 con.close();
+ 
+             } catch (SQLException e) {
+                 // TODO Auto-generated catch block
+                 
+                 //e.printStackTrace();
+             }
+
+
         }
         
         //this function calls a stored procedure to determine the Sum of all sales

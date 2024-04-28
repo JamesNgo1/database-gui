@@ -697,7 +697,27 @@ import javax.swing.*;
         //this function calls a stored procedure to add a new Sale to the database
         private void SubmitOrder()
         {
+            
             //TODO: complete this function, which should communicate with the database
+            System.out.println("getting info from field ");
+           
+            System.out.println(productListComboBox.getSelectedItem()); // item name
+            System.out.println("userID: " + loggedInUserID);
+            System.out.println("productID: " + productIDs.get(productListComboBox.getSelectedIndex()));
+            System.out.println("qty: " + productQtyField.getText());
+            System.out.println("price: " + productPrices.get(productListComboBox.getSelectedIndex()));
+
+            // int loggedInUserID;	 this is the variable that was holding that value
+
+            //total would be the price * qty
+
+            //sale auto increment
+
+            //prod id prolyl get rhoguh arratylist with the index
+
+            //ArrayList<Double> productPrices;
+            //ArrayList<Integer> productIDs;
+
         }
         
         //this function calls a stored procedure to add a new product to the database

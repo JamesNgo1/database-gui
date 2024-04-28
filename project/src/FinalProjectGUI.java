@@ -707,17 +707,46 @@ import javax.swing.*;
             System.out.println("qty: " + productQtyField.getText());
             System.out.println("price: " + productPrices.get(productListComboBox.getSelectedIndex()));
 
-            // int loggedInUserID;	 this is the variable that was holding that value
+            //BELOW ARE VARIABLES TO ADD
 
-            //total would be the price * qty
+            double totalPrice = (double)productPrices.get(productListComboBox.getSelectedIndex()) * Integer.parseInt(productQtyField.getText());
+            String totalPriceString = String.valueOf(totalPrice);
+            String userID = Integer.toString(loggedInUserID);
+            String qty = productQtyField.getText();
+            
 
-            //sale auto increment
+            String productIDString = productIDs.get(productListComboBox.getSelectedIndex()).toString();
 
-            //prod id prolyl get rhoguh arratylist with the index
 
-            //ArrayList<Double> productPrices;
-            //ArrayList<Integer> productIDs;
+            String jdbcConn = "jdbc:mysql://localhost:3306/finalguiproject?";
+             String uname = "guest";
+             String password = "guest";
 
+             System.out.println(productIDString);
+             System.out.println(userID);
+             System.out.println(qty);
+             System.out.println(totalPriceString);
+ 
+             try {
+                //pord id , user id , qty , total
+                System.out.println("yoyo");
+                 Connection con = DriverManager.getConnection(jdbcConn, uname, password);
+                 //CallableStatement sumbitOrder = con.prepareCall("call SumbitOrder("+productIDString + ", " + userID + ", " + qty + "," + totalPriceString);
+                 CallableStatement sumbitOrder = con.prepareCall("call SumbitOrder("+productIDString + "," + userID + "," + qty + "," + totalPriceString + ");");
+
+                 sumbitOrder.executeQuery();
+ 
+                 //okay probably the issue 
+                 //CallableStatement newUser = con.prepareCall("call RegisterNewUser('bitchass','bitchass')");
+                 //ResultSet rs = getAllProducts.executeQuery();
+                
+                 con.close();
+ 
+             } catch (SQLException e) {
+                 // TODO Auto-generated catch block
+                 
+                 e.printStackTrace();
+             }
         }
         
         //this function calls a stored procedure to add a new product to the database

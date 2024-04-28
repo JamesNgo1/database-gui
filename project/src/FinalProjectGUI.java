@@ -732,7 +732,7 @@ import javax.swing.*;
                 System.out.println("yoyo");
                  Connection con = DriverManager.getConnection(jdbcConn, uname, password);
                  //CallableStatement sumbitOrder = con.prepareCall("call SumbitOrder("+productIDString + ", " + userID + ", " + qty + "," + totalPriceString);
-                 CallableStatement sumbitOrder = con.prepareCall("call SumbitOrder("+productIDString + "," + userID + "," + qty + "," + totalPriceString + ");");
+                 CallableStatement sumbitOrder = con.prepareCall("call SubmitOrder("+productIDString + "," + userID + "," + qty + "," + totalPriceString + ");");
 
                  sumbitOrder.executeQuery();
  

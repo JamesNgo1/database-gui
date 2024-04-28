@@ -542,7 +542,8 @@ import javax.swing.*;
             } catch (SQLException e) {
                 // TODO Auto-generated catch block
                 System.out.println("error");
-                e.printStackTrace();
+                errorMessageArea.append("Account already existed\n");
+                //e.printStackTrace();
             }
 
 
@@ -568,6 +569,7 @@ import javax.swing.*;
         private void LoginWithCreds()
         {
             //TODO: complete this function, which should communicate with the database
+
         }
         
         //this function calls a stored procedure to get a recordset of all products
